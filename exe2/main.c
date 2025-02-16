@@ -5,7 +5,6 @@
 const int BTN = 28;
 const int LED = 4;
 volatile int flag = 0;
-volatile int aceso = 0;
 
 void btn_callback(uint gpio, uint32_t events){
   if (events == 0x4) { // fall edge
@@ -15,12 +14,8 @@ void btn_callback(uint gpio, uint32_t events){
 
 void controla_led(void){
   if (flag == 1){
-    if (!aceso){
-      aceso = 1;
-    } else{
-      aceso = 0;
-    }
-    gpio_put(LED, aceso);
+    int estado = gpio_get(LED);
+    gpio_put(LED, !estado);
     flag = 0;
   }
 }
