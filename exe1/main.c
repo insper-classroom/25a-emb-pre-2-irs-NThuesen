@@ -13,6 +13,16 @@ void btn_callback(uint gpio, uint32_t events) {
   }
 }
 
+void condicionais(void){
+  if (flag == 1){
+    printf("fall \n");
+    flag = 0;
+  } else if(flag == 2){
+    printf("rise \n");
+    flag = 0;
+  }
+}
+
 int main() {
   stdio_init_all();
 
@@ -24,10 +34,6 @@ int main() {
       BTN_PIN_R, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &btn_callback);
 
   while (true) {
-    if (flag == 1){
-      printf("fall \n");
-    } else if(flag == 2){
-      printf("rise \n");
-    }
+    condicionais();
   }
 }
