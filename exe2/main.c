@@ -36,6 +36,7 @@ int main() {
   gpio_set_dir(LED, GPIO_OUT);
 
   gpio_set_irq_enabled_with_callback(BTN, GPIO_IRQ_EDGE_FALL, true, &btn_callback);
+  
   while (true) {
     controla_led();
   }
